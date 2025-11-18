@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: veetoms-backend
+    env: node
+    branch: main
+    buildCommand: "npm install"
+    startCommand: "node server.js"
+    envVars:
+      - key: NODE_VERSION
+        value: 22.0.0
