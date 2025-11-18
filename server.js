@@ -26,3 +26,20 @@ function loadProducts() {
 function saveProducts(products) {
     fs.writeFileSync(productsFile, JSON.stringify(products, null, 2));
 }
+
+// Example GET route
+app.get("/products", (req, res) => {
+    const products = loadProducts();
+    res.json(products);
+});
+
+// Example POST route
+app.post("/products", (req, res) => {
+    const products = loadProducts();
+    products.push(req.body);
+    saveProducts(products);
+    res.json({ message: "Product added", product: req.body });
+});
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
